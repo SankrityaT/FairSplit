@@ -7,12 +7,42 @@
 
 import SwiftUI
 
-struct SearchableView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct SearchableView: ViewModifier {
+    @Binding var searchText: String
+
+    func body(content: Content) -> some View {
+        content
+            .overlay(
+                VStack {
+                    HStack {
+                        Spacer()
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Search...", text: $searchText)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                            if !searchText.isEmpty {
+                                Button(action: {
+                                    searchText = ""
+                                }) {
+                                    Image(systemName: "xmark.circle.fill")
+                                        .foregroundColor(.gray)
+                                }
+                            }
+                        }
+                        .padding()
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            )
     }
 }
 
-#Preview {
-    SearchableView()
+extension View {
+    func searchable(searchText: Binding<String>) -> some View {
+        self.modifier(SearchableView(searchText: searchText))
+    }
 }

@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct NotificationView: View {
+    @ObservedObject var firestoreService: FirestoreService
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(firestoreService.notifications) { notification in
+                VStack(alignment: .leading) {
+                    Text(notification.message)
+                        .font(.headline)
+                    Text(notification.date, style: .date)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+            }
+            .navigationTitle("Notifications")
+            .onAppear {
+                firestoreService.fetchNotifications()
+            }
+        }
     }
 }
 
-#Preview {
-    NotificationView()
-}

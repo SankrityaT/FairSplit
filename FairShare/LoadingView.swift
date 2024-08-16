@@ -9,10 +9,22 @@ import SwiftUI
 
 struct LoadingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ProgressView("Loading...")
+                .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                .scaleEffect(1.5, anchor: .center)
+                .padding()
+
+            Text("Please wait")
+                .font(.title2)
+                .fontWeight(.medium)
+                .foregroundColor(.gray)
+        }
     }
 }
 
-#Preview {
-    LoadingView()
+struct LoadingView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoadingView()
+    }
 }

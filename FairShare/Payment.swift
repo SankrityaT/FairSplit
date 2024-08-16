@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
+struct Payment: Identifiable, Codable {
+    @DocumentID var id: String?
+    var from: String
+    var to: String
+    var amount: Double
+    var date: Timestamp
+}

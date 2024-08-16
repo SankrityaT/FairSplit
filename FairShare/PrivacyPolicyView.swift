@@ -9,10 +9,14 @@ import SwiftUI
 
 struct PrivacyPolicyView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Privacy Policy")
+            .font(.title)
+            .navigationBarTitle("Privacy Policy", displayMode: .inline)
     }
 }
 
-#Preview {
-    PrivacyPolicyView()
+struct PrivacyPolicyView_Previews: PreviewProvider {
+    static var previews: some View {
+        PrivacyPolicyView()
+    }
 }

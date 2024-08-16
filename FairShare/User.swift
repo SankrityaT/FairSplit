@@ -1,8 +1,10 @@
-//
-//  User.swift
-//  FairShare
-//
-//  Created by Sankritya Thakur on 5/18/24.
-//
-
 import Foundation
+import FirebaseFirestoreSwift
+
+struct User: Codable, Identifiable {
+    @DocumentID var id: String?
+    var fullName: String?
+    var email: String?
+    var phoneNumber: String?
+    var profileImageUrl: String?
+}

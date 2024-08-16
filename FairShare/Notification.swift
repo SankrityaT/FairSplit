@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct Notification: Identifiable {
+    var id: UUID = UUID()
+    var message: String
+    var date: Date
+}

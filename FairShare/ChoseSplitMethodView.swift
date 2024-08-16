@@ -1,18 +1,38 @@
+//import SwiftUI
 //
-//  ChoseSplitMethodView.swift
-//  FairShare
+//struct ChooseSplitMethodView: View {
+//    @Binding var amount: Double
+//    @Binding var selectedSplitOption: SplitOption?
+//    var friends: [Friend]
+//    var onDone: () -> Void
 //
-//  Created by Sankritya Thakur on 6/27/24.
+//    var body: some View {
+//        NavigationView {
+//            VStack {
+//                List {
+//                    ForEach(SplitOption.allCases, id: \.self) { option in
+//                        HStack {
+//                            Text(option.title(friendName: ""))
+//                            Spacer()
+//                            if selectedSplitOption == option {
+//                                Image(systemName: "checkmark")
+//                            }
+//                        }
+//                        .contentShape(Rectangle())
+//                        .onTapGesture {
+//                            selectedSplitOption = option
+//                        }
+//                    }
+//                }
+//                .navigationTitle("Split Method")
+//                .navigationBarItems(leading: Button("Cancel") {
+//                    onDone()
+//                }, trailing: Button("Done") {
+//                    onDone()
+//                })
+//            }
+//        }
+//    }
+//}
 //
-
-import SwiftUI
-
-struct ChoseSplitMethodView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-#Preview {
-    ChoseSplitMethodView()
-}
+//

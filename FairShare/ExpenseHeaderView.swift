@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct ExpenseHeaderView: View {
+    var totalAmountOwed: Double
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Overall, you owe")
+                .font(.headline)
+                .foregroundColor(.primary)
+            Text("$\(totalAmountOwed, specifier: "%.2f")")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(totalAmountOwed > 0 ? .red : .green)
+        }
+        .padding()
     }
 }
 
-#Preview {
-    ExpenseHeaderView()
+struct ExpenseHeaderView_Previews: PreviewProvider {
+    static var previews: some View {
+        ExpenseHeaderView(totalAmountOwed: 25.68)
+    }
 }

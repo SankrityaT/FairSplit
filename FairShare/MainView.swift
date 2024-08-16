@@ -1,24 +1,43 @@
-//
-//  ContentView.swift
-//  FairShare
-//
-//  Created by Sankritya Thakur on 5/16/24.
-//
-
 import SwiftUI
 
 struct MainView: View {
+    @State private var selectedIndex: Int = 0
+    @EnvironmentObject var authService: AuthService
+    @EnvironmentObject var firestoreService: FirestoreService
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Group {
+            if authService.user == nil {
+                WelcomeView()
+            } else {
+                ZStack {
+                    switch selectedIndex {
+                    case 0:
+                        MainDashboardView(firestoreService: firestoreService)
+                    case 1:
+                        AddExpenseView(firestoreService: firestoreService)
+                    case 2:
+                        SettingsView()
+                    default:
+                        MainDashboardView(firestoreService: firestoreService)
+                    }
+                    VStack {
+                        Spacer()
+                        CustomNavigationBar(selectedIndex: $selectedIndex, authService: authService, firestoreService: firestoreService)
+                    }
+                }
+                .onAppear {
+                    UITabBar.appearance().isHidden = true
+                }
+            }
         }
-        .padding()
     }
 }
 
-#Preview {
-    MainView()
+struct MainView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainView()
+            .environmentObject(AuthService())
+            .environmentObject(FirestoreService())
+    }
 }
